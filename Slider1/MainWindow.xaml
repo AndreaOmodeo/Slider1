@@ -1,0 +1,18 @@
+﻿<Window x:Class="Slider1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Slider" Name="IO" Topmost="True" Loaded="Window_Loaded" WindowStyle="None" AllowsTransparency="True" Background="{x:Null}" 
+        MouseRightButtonUp="Window_MouseRightButtonUp" PreviewKeyDown="ToggleButton_PreviewKeyDown" MouseWheel="IO_MouseWheel" MouseLeftButtonDown="IO_MouseLeftButtonDown" Icon="/Slider1;component/movie-track.ico" AllowDrop="True" Drop="IO_Drop">
+    <Grid>
+        <Image  HorizontalAlignment="Stretch" Name="myImage" Stretch="Uniform"   />
+        <StatusBar Grid.Row="1" HorizontalAlignment="Center"  Name="statusBar1" VerticalAlignment="Top" Opacity="0.6" Background="Transparent" Height="Auto" >
+            <Label Content="xx of ##" Padding="0" HorizontalAlignment="Left" Name="label1" VerticalAlignment="Top" Background="#8FF0" >
+            </Label>
+            <ToggleButton Content="_R"  HorizontalAlignment="Left" IsChecked="{Binding Mode=TwoWay, ElementName=IO, Path=Random}" />
+            <Button Content="_M"  HorizontalAlignment="Left" Name="maxim" Click="maxim_Click" />
+            <ToggleButton Content="_T"  HorizontalAlignment="Left" Name="topmost" IsChecked="{Binding Mode=TwoWay, ElementName=IO, Path=Topmost}" />
+            <Button Content="_X"  HorizontalAlignment="Left" Name="close" Click="close_Click" >
+            </Button>
+        </StatusBar>
+    </Grid>
+</Window>
