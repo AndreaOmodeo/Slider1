@@ -372,7 +372,7 @@ namespace Slider1
                 if (i != original_i)
                     ShowPicture(i);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 ShowPlaceHolder();
             }
