@@ -28,6 +28,7 @@ namespace Slider1
         public static readonly DependencyProperty RandomProperty;
         private System.Random randomizer = new System.Random();
         DispatcherTimer dtt = new DispatcherTimer(DispatcherPriority.ApplicationIdle);
+        int[] timespans = {31,62,125,250,500,1000,2000,4000,8000,16000 };
 
         static MainWindow()
         {
@@ -143,7 +144,10 @@ namespace Slider1
                 if (i < pictures.Count)
                     ShowPicture(i);
                 else
+                {
+                    i = pictures.Count - 1;
                     ((DispatcherTimer)sender).Stop();
+                }
             }
             catch (Exception)
             {
@@ -256,7 +260,6 @@ namespace Slider1
                     {
                         if (zie.FilePath == innername)
                         {
-//                            byte[] buffer = new byte[16384];
                             using (MemoryStream ms = new MemoryStream())
                             {
                                 zie.WriteTo(ms);
@@ -365,6 +368,17 @@ namespace Slider1
                     case Key.Subtract:
                         SlowDownTimer();
                         break;
+                    case Key.D1:
+                    case Key.D2:
+                    case Key.D3:
+                    case Key.D4:
+                    case Key.D5:
+                    case Key.D6:
+                    case Key.D7:
+                    case Key.D8:
+                    case Key.D9:
+                        SetTimer(e.Key-Key.D0);
+                        break;
                     default:
                         e.Handled = false;
                         break;
@@ -376,6 +390,12 @@ namespace Slider1
             {
                 ShowPlaceHolder();
             }
+        }
+
+        private void SetTimer(int v)
+        {
+            if (v > 0 && v <9)
+                dtt.Interval = TimeSpan.FromMilliseconds(timespans[v]);
         }
 
         private SortedSet<string> EmptyCollection()
