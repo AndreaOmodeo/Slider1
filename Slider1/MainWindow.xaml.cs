@@ -326,11 +326,11 @@ namespace Slider1
                         i = 0;
                         break;
                     case Key.Left:
-                        PreviousImage();
+                        PreviousImage(false);
                         dtt.Stop();
                         break;
                     case Key.Right:
-                        NextImageLooping();
+                        NextImageLooping(false);
                         dtt.Stop();
                         break;
                     case Key.D:
@@ -419,17 +419,23 @@ namespace Slider1
             dtt.Interval = TimeSpan.FromMilliseconds(millis);
         }
 
-        private void PreviousImage()
+        private void PreviousImage(bool looping)
         {
             if (i > 0)
                 i--;
+            else
+                if (looping)
+                    i = pictures.Count - 1;
         }
 
-        private void NextImageLooping()
+        private void NextImageLooping(bool looping)
         {
             i++;
             if (i >= pictures.Count)
-                i = 0;
+                if (looping)
+                    i = 0;
+                else
+                    i = pictures.Count - 1;
         }
 
         private void IO_MouseWheel(object sender, MouseWheelEventArgs e)
@@ -438,9 +444,9 @@ namespace Slider1
             {
                 dtt.Stop();
                 if (e.Delta < 0)
-                    NextImageLooping();
+                    NextImageLooping(true);
                 else
-                    PreviousImage();
+                    PreviousImage(true);
                 ShowPicture(i);
             }
             catch (Exception)
