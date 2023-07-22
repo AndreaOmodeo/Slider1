@@ -458,9 +458,9 @@ namespace Slider1
 
         private void IO_Drop(object sender, DragEventArgs e)
         {
-            if (!e.Data.GetDataPresent("FileName"))
+            if (!e.Data.GetDataPresent(DataFormats.FileDrop))
                 return;
-            string[] names = e.Data.GetData("FileName") as string[];
+            var names = e.Data.GetData(DataFormats.FileDrop) as string[];
             bool auto = dtt.IsEnabled;
             dtt.Stop();
             pictures = EmptyCollection();
