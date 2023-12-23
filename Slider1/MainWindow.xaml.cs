@@ -40,6 +40,7 @@ namespace Slider1
         public MainWindow()
         {
             InitializeComponent();
+            ICSharpCode.SharpZipLib.Zip.ZipConstants.DefaultCodePage = 850;
 
             pictures = EmptyCollection();
             pictures.Add(placeholder);
@@ -94,7 +95,9 @@ namespace Slider1
                     }
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+            }
         }
 
         private void TraverseRar(string z, SortedSet<string> files)
